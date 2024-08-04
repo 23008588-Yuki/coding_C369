@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
 
     // Ensure loadHomePage runs on specific pages
-    if (window.location.pathname === '/homepage.html' || window.location.pathname === '/bitcoin.html') {
+    if (window.location.pathname === '/index.html' || window.location.pathname === '/bitcoin.html') {
         loadHomePage();
     }
 
@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (user) {
                 localStorage.setItem("isLoggedIn", "true");
                 saveCurrentUser(user);
-                window.location.href = "/homepage.html";
+                window.location.href = "/index.html";
             } else {
                 alert("Invalid email or password");
             }
@@ -779,7 +779,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Check if on homepage or bitcoin page and load balance
-    if (window.location.pathname === '/homepage.html' || window.location.pathname === '/bitcoin.html') {
+    if (window.location.pathname === '/index.html' || window.location.pathname === '/bitcoin.html') {
         loadHomePage();
     }
 
