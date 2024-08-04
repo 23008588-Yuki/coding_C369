@@ -207,7 +207,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${transaction.type || '-'}</td>
-                    <td>${transaction.asset || '-'}</td>
                     <td>${transaction.coin || '-'}</td>
                     <td>${transaction.date || '-'}</td>
                     <td>${transaction.reference || '-'}</td>
