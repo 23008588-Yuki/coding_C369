@@ -189,16 +189,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Load transactions on bitcoin page
         if (window.location.pathname === '/bitcoin.html') {
-            // Filter transactions
-            const filteredTransactions = user.transactions.filter(transaction =>
-                ['buy', 'sell', 'exchange'].includes(transaction.asset)
-            );
-
-            loadTransactions(filteredTransactions);
-        } 
-
-        // Load transactions on bitcoin page
-        if (window.location.pathname === '/bitcoin.html') {
             const transactionTableBody = document.getElementById('transaction-table-body');
             transactionTableBody.innerHTML = '';
 
@@ -317,9 +307,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const statusMessage = getStatusMessage(transaction.type);
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                
-                <td>${transaction.asset || '-'}</td>
-               
+                <td>${transaction.type || '-'}</td>
+                <td>${transaction.coin || '-'}</td>
                 <td>${transaction.date || '-'}</td>
                 <td>${transaction.reference || '-'}</td>
                 <td>${transaction.amount || '-'}</td>
@@ -521,9 +510,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-
-
-
     // Handle coin purchase
     window.buyCoin = function () {
         const coin = document.getElementById('coin').value;
@@ -543,12 +529,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         user.balance -= amount;
         const transaction = {
-            asset: coin,
+            type:'buy',
+            coin: coin,
             amount: `-${amount.toFixed(2)}`,
             date: new Date().toLocaleString(),
             reference: Math.floor(Math.random() * 1000000),
             status: 'Successful',
-            type: 'buy'
         };
         user.transactions.push(transaction);
         updateUser(user);
@@ -560,14 +546,15 @@ document.addEventListener("DOMContentLoaded", function () {
             ['buy', 'sell', 'exchange'].includes(transaction.asset)
         );
 
-            loadTransactions(filteredTransactions);
+        loadTransactions(filteredTransactions);
 
         // Update transactions table on bitcoin page
         if (window.location.pathname === '/bitcoin.html') {
             const transactionTableBody = document.getElementById('transaction-table-body');
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${transaction.asset}</td>
+                <td>${transaction.type}</td>
+                <td>${transaction.coin}</td>
                 <td>${transaction.date}</td>
                 <td>${transaction.reference}</td>
                 <td>${transaction.amount || '-'}</td>
@@ -598,29 +585,40 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        
+
         const user = getCurrentUser();
         if (!user) return;
 
-        user.balance += amount;
+        user.balance -= amount;
         const transaction = {
-            asset: coin,
+            type:'sell',
+            coin: coin,
             amount: `+${amount.toFixed(2)}`,
             date: new Date().toLocaleString(),
             reference: Math.floor(Math.random() * 1000000),
-            status: 'Successful',
-            type: 'sell'
+            status: 'Successful'
         };
         user.transactions.push(transaction);
         updateUser(user);
 
         document.getElementById('total-balance').textContent = `$${user.balance.toFixed(2)}`;
+        loadTransactions();
+        // Filter transactions
+        const filteredTransactions = user.transactions.filter(transaction =>
+            ['buy', 'sell', 'exchange'].includes(transaction.asset)
+        );
+
+        loadTransactions(filteredTransactions);
+       
 
         // Update transactions table on bitcoin page
         if (window.location.pathname === '/bitcoin.html') {
             const transactionTableBody = document.getElementById('transaction-table-body');
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${transaction.asset}</td>
+                <td>${transaction.type}</td>
+                <td>${transaction.coin}</td>
                 <td>${transaction.date}</td>
                 <td>${transaction.reference}</td>
                 <td>${transaction.amount || '-'}</td>
@@ -628,12 +626,6 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             transactionTableBody.appendChild(tr);
         }
-
-        // Filter transactions
-        const filteredTransactions = user.transactions.filter(transaction =>
-            ['buy', 'sell', 'exchange'].includes(transaction.asset)
-        );
-        loadTransactions(filteredTransactions);
 
         // Clear input fields
         document.getElementById('amount').value = '';
@@ -685,41 +677,19 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create a new transaction entry instead of overwriting the old one
         const newReference = Math.floor(Math.random() * 1000000);
         const newTransaction = {
-            asset: newCoin,
+            type: 'exchange',
+            coin: newCoin,
             amount: exchangeAmount.toFixed(2),
             date: new Date().toLocaleString(),
             reference: newReference,  // Generate a new reference number
             status: 'Successful',
-            type: 'exchange'
+            
         };
         user.transactions.push(newTransaction);
         updateUser(user);
 
+
         console.log("Updated User:", user);
-
-        // Refresh transactions table on bitcoin page
-        if (window.location.pathname === '/bitcoin.html') {
-            const transactionTableBody = document.getElementById('transaction-table-body');
-            transactionTableBody.innerHTML = '';
-            user.transactions.forEach(transaction => {
-                const statusMessage = getStatusMessage(transaction.type);
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${transaction.asset}</td>
-                    <td>${transaction.date}</td>
-                    <td>${transaction.reference}</td>
-                    <td>${transaction.amount || '-'}</td>
-                    <td>${transaction.status || '-'}</td>
-                `;
-                transactionTableBody.appendChild(tr);
-            });
-
-        // Filter transactions
-        const filteredTransactions = user.transactions.filter(transaction =>
-            ['buy', 'sell', 'exchange'].includes(transaction.asset)
-        );
-        loadTransactions(filteredTransactions);
-        }
 
         // Clear exchange form fields
         document.getElementById('transaction-reference').value = '';
@@ -728,9 +698,87 @@ document.addEventListener("DOMContentLoaded", function () {
 
         alert(`Exchange completed successfully\nOld Transaction Reference: ${oldTransaction.reference}\nNew Transaction Reference: ${newReference}`);
 
-        // Refresh transaction table
-        loadHomePage();
+        // Reload the transaction list without filtering here
+        loadTransactions(filterTransactions);
     };
+    // Event listener to filter transactions based on type
+    document.getElementById('asset-filter').addEventListener('change', function() {
+        const filter = this.value;
+        loadTransactions(filter);
+    });
+    // Function to load transactions and filter them based on the selected type
+    function loadTransactions(filter = "all") {
+        const user = getCurrentUser();
+        if (!user) return;
+
+        const transactionTableBody = document.getElementById('transaction-table-body');
+        transactionTableBody.innerHTML = '';
+
+        let transactions = user.transactions;
+
+        transactions = transactions.filter(transaction => filter === "all" || transaction.type === filter);
+        
+        transactions.forEach(transaction => {
+            const statusMessage = getStatusMessage(transaction.type);
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${transaction.type}</td>
+                <td>${transaction.coin}</td>
+                <td>${transaction.date}</td>
+                <td>${transaction.reference}</td>
+                <td>${transaction.amount || '-'}</td>
+                <td>${transaction.status || '-'}</td>
+            `;
+            transactionTableBody.appendChild(tr);
+        });
+
+        function loadBalance() {
+            const user = getCurrentUser();
+            if (!user) return;
+
+            const balanceElements = document.querySelectorAll('#balance, #total-balance, #current-balance');
+            balanceElements.forEach(el => {
+                if (el) el.textContent = `$${user.balance.toFixed(2)}`;
+            });
+        }
+
+        window.filterTransactions = function () {
+            const filter = document.getElementById('asset-filter').value;
+            loadTransactions(filter);
+        }
+
+        function loadDashboard() {
+            loadBalance();
+            loadTransactions();
+        }
+    
+        function loadHomePage() {
+            const user = getCurrentUser();
+            if (!user) return;
+
+            document.getElementById('total-balance').textContent = `$${user.balance.toFixed(2)}`;
+
+            // Filter transactions
+            const filteredTransactions = user.transactions.filter(transaction =>
+                ['buy', 'sell', 'exchange'].includes(transaction.asset)
+            );
+
+            loadTransactions(filteredTransactions);
+
+            const userName = user.name || user.email;
+            document.getElementById('user-name').textContent = userName;
+
+            loadTransactions();
+        }
+
+        if (window.location.pathname === '/index.html' || window.location.pathname === '/bitcoin.html') {
+            loadHomePage();
+        }
+
+        if (window.location.pathname === '/dashboard.html') {
+            loadDashboard();
+        }
+    }
 
     // Handle profile editing
     function editProfile() {
@@ -856,7 +904,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (window.location.pathname === '/dashboard.html') {
                     tr.innerHTML = `
                         <td>${transaction.type || '-'}</td>
-                        <td>${transaction.asset || '-'}</td>
+                        <td>${transaction.coin || '-'}</td>
                         <td>${transaction.date || '-'}</td>
                         <td>${transaction.reference || '-'}</td>
                         <td>${transaction.amount || '-'}</td>
@@ -864,16 +912,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${transaction.currency || '-'}</td>
                         <td>${statusMessage || '-'}</td>
                     `;
-                } else if (window.location.pathname === '/bitcoin.html') {
-                    tr.innerHTML = `
-                        <td>${transaction.type}</td>
-                        <td>${transaction.asset || '-'}</td>
-                        <td>${transaction.date || '-'}</td>
-                        <td>${transaction.reference || '-'}</td>
-                        <td>${transaction.amount || '-'}</td>
-                        <td>${statusMessage || '-'}</td>
-                    `;
-                }
+                } 
                 transactionTableBody.appendChild(tr);
             });
     }
@@ -942,12 +981,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById('total-balance').textContent = `$${user.balance.toFixed(2)}`;
 
-        // Filter transactions
-        const filteredTransactions = user.transactions.filter(transaction =>
-            ['buy', 'sell', 'exchange'].includes(transaction.asset)
-        );
-        loadTransactions(filteredTransactions);
-
         loadTransactions();
     }
 
@@ -992,6 +1025,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById('current-balance').textContent = `$${user.balance.toFixed(2)}`;
         loadTransactions();
+        
+
     }
 
     // Load the current balance in dashboard, bitcoin and transfer
