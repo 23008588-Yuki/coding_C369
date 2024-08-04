@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Transfer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: black;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: rgb(114, 178, 142);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 14px;
+            color: red;
+        }
+
+        #balance {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid" style="margin-top: 20px;">
+            <!-- Navbar brand/logo -->
+            <a class="navbar-brand" style="margin-left: 90px;" href="/index.html"><b>Block Tech</b></a>
+            <!-- Links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/dashboard.html">DashBoard</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/top-up.html">Wallet</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="bitcoin.html">Exchange</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" id="auth-buttons">
+                    <li class="nav-item">
+                        <a class="btn btn-white" style="width: 140px; border: 2px solid #007bff; color: #007bff; margin-right: 10px; border-radius: 5px" href="/login.html">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" style="width: 140px; border-radius: 5px" href="/signup.html">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>International Transfer</h1>
+        <div id="balance" style="font-size: 20px; color: #333; margin-bottom: 20px;">
+            Current Balance: $<span id="current-balance"></span>
+        </div>
+        <form id="transfer-form">
+            <div style="margin-bottom: 20px;">
+                <label for="recipient-name" style="display: block; margin-bottom: 10px; color: #555; text-align: left;">Recipient Name</label>
+                <input type="text" id="recipient-name" name="recipient-name" placeholder="Recipient's Name" required>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="recipient" style="display: block; margin-bottom: 10px; color: #555; text-align: left;">Recipient Email</label>
+                <input type="email" id="recipient" name="recipient" placeholder="Recipient's Email" required>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="amount" style="display: block; margin-bottom: 10px; color: #555; text-align: left;">Amount</label>
+                <input type="number" id="amount" name="amount" placeholder="Amount to Transfer" required>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="currency" style="display: block; margin-bottom: 10px; color: #555; text-align: left;">Currency</label>
+                <select id="currency" name="currency" required>
+                    <option value="" selected disabled>---</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="JPY">JPY</option>
+                </select>
+            </div>
+            <button type="submit">Transfer</button>
+        </form>
+        <div id="message" style="margin-top: 20px; font-size: 14px; color: red;"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

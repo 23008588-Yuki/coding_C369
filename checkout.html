@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <title>Secure Checkout</title>
+    <style>
+        * { font-family: Arial, Helvetica, sans-serif; }
+        body {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            width: 30%;
+            max-width: 600px;
+            margin-top: 60px; /* Add margin to push down from navbar */
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group input {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: seagreen;
+            border: none;
+            border-radius: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; top: 0; width: 100%; z-index: 1000;">
+        <div class="container-fluid" style="margin-top: 20px;">
+            <!-- Navbar brand/logo -->
+            <a class="navbar-brand" style="margin-left: 90px;" href="/index.html"><b>Block Tech</b></a>
+            <!-- Links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/dashboard.html">DashBoard</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: blue;" href="/top-up.html"><b>Wallet</b></a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="bitcoin.html">Exchange</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" id="auth-buttons">
+                    <li class="nav-item">
+                        <a class="btn btn-white" style="width: 140px; border: 2px solid #007bff; color: #007bff; margin-right: 10px; border-radius: 5px" href="/login.html">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" style="width: 140px; border-radius: 5px" href="/signup.html">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h4>Secure Checkout</h4>
+        <p id="amountDisplay">Amount: $<span id="amount"></span></p>
+        <br>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Card Number" id="cardNumber">
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Card Holder Name" id="cardHolderName">
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Expiry Date (MM/YY)" id="expiryDate">
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="CVV" id="cvv">
+        </div>
+        <button class="btn btn-primary" onclick="processPayment(event)">Process to Verification</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const amount = localStorage.getItem('topUpAmount');
+            document.getElementById('amount').textContent = amount;
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

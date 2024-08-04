@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <title>Services - BlockTech</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .card {
+            margin-bottom: 20px;
+            height: 100%;
+        }
+
+        .card-img-top {
+            height: 200px; /* Adjust height as needed */
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .card-title a:hover {
+            color: green;
+        }
+
+        /* Script for footer  */
+        .footer {
+                background-color: lightgrey;
+                color: black;
+                padding: 40px 0;
+                margin-top: 40px;
+            }
+        .footer a {
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: blue;
+            text-decoration: none;
+        }
+
+        .social-link {
+        position: relative;
+        padding-right: 10px;
+        }
+
+        .social-link::after {
+        content: "|";
+        position: absolute;
+        right: 0;
+        }
+
+        .social-link:last-child::after {
+        content: "";
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="margin-top: 20px;">
+            <!-- Navbar brand/logo -->
+            <a class="navbar-brand" style="margin-left: 90px;" href="/index.html"><b>Block Tech</b></a>
+            <!-- Links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/dashboard.html">DashBoard</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/top-up.html">Wallet</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="bitcoin.html">Exchange</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" id="auth-buttons">
+                    <li class="nav-item">
+                        <a class="btn btn-white" style="width: 140px; border: 2px solid #007bff; color: #007bff; margin-right: 10px; border-radius: 5px" href="/login.html">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" style="width: 140px; border-radius: 5px" href="/signup.html">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Section -->
+    <div class="container">
+        <h2 class="text-center" style="margin-top: 25px;">Our Services</h2>
+        <p class="text-center">At BlockTech, we offer a range of services to meet your blockchain and cryptocurrency needs. Explore our services below.</p>
+        
+        <div class="row">
+            <!-- Service 1 -->
+            <div class="col-md-3">
+                <div class="card service-card">
+                    <img src="/images/currency.png" class="card-img-top" alt="Service 1">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="bitcoin.html">Cryptocurrency Exchange</a></h3>
+                        <p class="card-text">Our secure and easy-to-use cryptocurrency exchange allows you to buy, sell, and trade a variety of cryptocurrencies.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Service 2 -->
+            <div class="col-md-3">
+                <div class="card service-card">
+                    <img src="/images/transfer.png" class="card-img-top" alt="Service 2">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="transfering.html">International Transfer</a></h3>
+                        <p class="card-text">Seamlessly send and receive funds across borders with our secure and efficient international transfer service. Our platform ensures quick and reliable transactions, making global payments easier than ever.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Service 3 -->
+            <div class="col-md-3">
+                <div class="card service-card">
+                    <img src="/images/money-laundering.png" class="card-img-top" alt="Service 3">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="AML2.html">AML</a></h3>
+                        <p class="card-text">AML (Anti-Money Laundering) involves a set of procedures, laws, and regulations designed to prevent the generation of income through illegal actions. It ensures financial institutions detect and report suspicious activities, protecting the integrity of the financial system.</p>
+                    </div>
+                </div>
+            </div>  
+            <!-- Service 4 -->
+            <div class="col-md-3">
+                <div class="card service-card">
+                    <img src="/images/currencyconversion.png" class="card-img-top" alt="Service 4">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="currencyconverter.html">Currency Conversion</a></h3>
+                        <p class="card-text">Convert your cryptocurrencies quickly and easily with our competitive currency conversion service. Benefit from real-time exchange rates and low fees.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="footer-top" style="display: flex; justify-content: space-between; width: 100%; max-width: 1200px;">
+                <div class="footer-contact" style="margin: 20px;">
+                    <h4 style="margin-bottom: 10px;">Contact Us</h4>
+                    <p style="margin: 0;">Email: info@blockchaincompany.com</p>
+                    <p style="margin: 0;">Phone: 8770 7890</p>
+                    <p style="margin: 0;">Address: 123 Blockchain St, Cryptoville, CryptoLand</p>
+                </div> 
+                <div class="footer-links" style="margin: 20px;">
+                    <h4 style="margin-bottom: 10px;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 5px 0;"><a href="/aboutus.html">About Us</a></li>
+                        <li style="margin: 5px 0;"><a href="/service.html">Services</a></li>
+                        <li style="margin: 5px 0;"><a href="/contactus.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-legal" style="margin: 20px;">
+                    <h4 style="margin-bottom: 10px;">Legal</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 5px 0;"><a href="/privacy_policy.html">Privacy Policy</a></li>
+                        <li style="margin: 5px 0;"><a href="/terms&services.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-top: 20px; border-top: 1px solid #444; padding-top: 20px;">
+                <div class="social-media" style="margin: 0 10px;">
+                    <a href="https://www.facebook.com/login.php/" class="social-link"><ion-icon name="logo-facebook"></ion-icon>Facebook</a>
+                    <a href="https://x.com/i/flow/login" class="social-link"><ion-icon name="logo-twitter"></ion-icon>Twitter</a>
+                    <a href="https://www.linkedin.com/login" class="social-link"><ion-icon name="logo-LinkedIn"></ion-icon>LinkedIn</a>
+                    <a href="https://www.instagram.com/accounts/login/" class="social-link"><ion-icon name="logo-instagram"></ion-icon>Instagram</a>
+                </div>
+                <p style="margin: 0;">&copy; 2024 BlockTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+              
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

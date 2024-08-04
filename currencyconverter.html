@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Currency Converter Page</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .whole {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .heading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .currency-converter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .currency-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+        }
+
+        .currency-select {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .currency-select select {
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .switch-currency {
+            display: flex;
+            align-items: center;
+            margin: 0 20px;
+        }
+
+        #switchButton {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .image-container {
+            margin-right: 40px;
+        }
+
+        .image-container img {
+            width: 600px;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="margin-top: 20px;">
+            <!-- Navbar brand/logo -->
+            <a class="navbar-brand" style="margin-left: 90px;" href="/index.html"><b>Block Tech</b></a>
+            <!-- Links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/dashboard.html">DashBoard</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/top-up.html">Wallet</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="bitcoin.html">Exchange</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" id="auth-buttons">
+                    <li class="nav-item">
+                        <a class="btn btn-white" style="width: 140px; border: 2px solid #007bff; color: #007bff; margin-right: 10px; border-radius: 5px" href="/login.html">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" style="width: 140px; border-radius: 5px" href="/signup.html">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="whole">
+        <div class="container">
+            <div class="image-container">
+                <img src="/images/exchange.png" alt="Service 4">
+            </div>
+
+            <div>
+                <!-- Heading -->
+                <div class="heading">
+                    Currency Converter
+                </div>
+
+                <!-- Currency Converter -->
+                <div class="currency-converter">
+                    <div class="currency-box">
+                        <div class="currency-select">
+                            <select id="fromCurrency">
+                                <option value="EUR">Euro</option>
+                                <option value="SGD">Singapore Dollar</option>
+                                <option value="JPY">Japanese Yen</option>
+                                <option value="TWD">Taiwan Dollar</option>
+                                <option value="THB">Thai Baht</option>
+                                <option value="MYR">Malaysian Ringgit</option>
+                                <option value="USD">US Dollar</option>
+                            </select>
+                        </div>
+                        <input type="number" id="fromAmount" value="1">
+                    </div>
+                    <div class="switch-currency">
+                        <button id="switchButton">&#8644;</button>
+                    </div>
+                    <div class="currency-box">
+                        <div class="currency-select">
+                            <select id="toCurrency">
+                                <option value="USD">US Dollar</option>
+                                <option value="EUR">Euro</option>
+                                <option value="SGD">Singapore Dollar</option>
+                                <option value="JPY">Japanese Yen</option>
+                                <option value="TWD">Taiwan Dollar</option>
+                                <option value="THB">Thai Baht</option>
+                                <option value="MYR">Malaysian Ringgit</option>
+                            </select>
+                        </div>
+                        <input type="number" id="toAmount" value="1.091">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('switchButton').addEventListener('click', switchCurrencies);
+        document.getElementById('fromAmount').addEventListener('input', updateToAmount);
+        document.getElementById('toAmount').addEventListener('input', updateFromAmount);
+
+        function switchCurrencies() {
+            const fromCurrency = document.getElementById('fromCurrency');
+            const toCurrency = document.getElementById('toCurrency');
+            const fromAmount = document.getElementById('fromAmount');
+            const toAmount = document.getElementById('toAmount');
+
+            // Swap currencies
+            let tempCurrency = fromCurrency.value;
+            fromCurrency.value = toCurrency.value;
+            toCurrency.value = tempCurrency;
+
+            // Swap amounts
+            let tempAmount = fromAmount.value;
+            fromAmount.value = toAmount.value;
+            toAmount.value = tempAmount;
+
+            updateToAmount();
+        }
+
+        function updateToAmount() {
+            const fromAmount = parseFloat(document.getElementById('fromAmount').value);
+            const exchangeRate = getExchangeRate(document.getElementById('fromCurrency').value, document.getElementById('toCurrency').value);
+            document.getElementById('toAmount').value = (fromAmount * exchangeRate).toFixed(3);
+        }
+
+        function updateFromAmount() {
+            const toAmount = parseFloat(document.getElementById('toAmount').value);
+            const exchangeRate = getExchangeRate(document.getElementById('fromCurrency').value, document.getElementById('toCurrency').value);
+            document.getElementById('fromAmount').value = (toAmount / exchangeRate).toFixed(3);
+        }
+
+        function getExchangeRate(fromCurrency, toCurrency) {
+            // Exchange rates for Europe, Singapore, Japan, Taiwan, Thailand, Malaysia, USD
+            const rates = {
+                'EURUSD': 1.091,
+                'USDEUR': 1 / 1.091,
+                'EURSGD': 1.58,
+                'SGDEUR': 1 / 1.58,
+                'EURJPY': 130.5,
+                'JPYEUR': 1 / 130.5,
+                'EURTWD': 33.0,
+                'TWDEUR': 1 / 33.0,
+                'EURTHB': 37.5,
+                'THBEUR': 1 / 37.5,
+                'EURMYR': 4.8,
+                'MYREUR': 1 / 4.8,
+                'USDJPY': 119.95,
+                'JPYUSD': 1 / 119.95,
+                'USDSGD': 1.35,
+                'SGDUSD': 1 / 1.35,
+                'USDTWD': 30.3,
+                'TWDFUSD': 1 / 30.3,
+                'USDTHB': 34.5,
+                'THBUSD': 1 / 34.5,
+                'USDMYR': 4.4,
+                'MYRUSD': 1 / 4.4,
+                'SGDJPY': 88.7,
+                'JPYSGD': 1 / 88.7,
+                'SGDTWD': 22.4,
+                'TWDSGD': 1 / 22.4,
+                'SGDTHB': 25.6,
+                'THBSGD': 1 / 25.6,
+                'SGDMYR': 3.25,
+                'MYRSGD': 1 / 3.25,
+                'JPYTWD': 0.26,
+                'TWDJPY': 1 / 0.26,
+                'JPYTHB': 0.295,
+                'THBJPY': 1 / 0.295,
+                'JPYMYR': 0.037,
+                'MYRJPY': 1 / 0.037,
+                'TWDTHB': 1.04,
+                'THBTWD': 1 / 1.04,
+                'TWDMYR': 0.15,
+                'MYRTWD': 1 / 0.15,
+                'THBMYR': 0.125,
+                'MYRTHB': 1 / 0.125
+            };
+
+            return rates[fromCurrency + toCurrency] || 1;
+        }
+    </script>
+</body>
+
+</html>

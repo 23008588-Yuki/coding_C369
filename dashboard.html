@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <title>Dashboard</title>
+    <style>
+        * { font-family: Arial, Helvetica, sans-serif; }
+        .container { padding-top: 70px; }
+        .transaction-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .transaction-table th, .transaction-table td {
+            padding: 10px;
+            text-align: left;
+        }
+        .transaction-table th {
+            border-bottom: 2px solid #dee2e6;
+        }
+        .transaction-table tr:not(:last-child) {
+            border-bottom: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="margin-top: 20px;">
+            <!-- Navbar brand/logo -->
+            <a class="navbar-brand" style="margin-left: 90px;" href="/index.html"><b>Block Tech</b></a>
+            <!-- Links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: blue;" href="/dashboard.html"><b>DashBoard</b></a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/top-up.html">Wallet</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="bitcoin.html">Exchange</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" id="auth-buttons">
+                    <li class="nav-item">
+                        <a class="btn btn-white" style="width: 140px; border: 2px solid #007bff; color: #007bff; margin-right: 10px; border-radius: 5px" href="/login.html">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" style="width: 140px; border-radius: 5px" href="/signup.html">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3>Current Balance: $<span id="balance"></span></h3>
+        <br>
+        <div class="transaction-header" style=" display: flex; align-items: center; gap: 20px;">
+            <h5 class="transaction-history" style="margin: 0; ">Transaction History</h5>
+            <select id="asset-filter" style="width: 15%; margin-left: 740px;" onchange="filterTransactions()">
+                <option value="all">All</option>
+                <option value="buy">Buy</option>
+                <option value="sell">Sell</option>
+                <option value="exchange">Exchange</option>
+                <option value="top-up">Top Up</option>
+                <option value="transfer">Transfer</option>
+                <!-- Add options dynamically -->
+            </select>
+        </div>
+
+        <div class="transaction-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Asset</th>
+                        <th>Coin</th>
+                        <th>Transaction Date</th>
+                        <th>Transaction Reference</th>
+                        <th>Amount</th>
+                        <th>Recipient</th>
+                        <th>Currency</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-table-body">
+                    <!-- Transactions will be dynamically populated here -->
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Ensure script.js is loaded at the end of body to ensure DOM is fully loaded -->
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('transferForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let amount = parseInt(document.getElementById('amount').value);
+
+            if (amount > 10000) {
+                let transfers = JSON.parse(localStorage.getItem('transfers')) || [];
+                transfers.push(amount);
+                localStorage.setItem('transfers', JSON.stringify(transfers));
+                alert('Transfer added to AML2.html');
+            } else {
+                alert('Transfer amount must be greater than 200.');
+            }
+        });
+    </script>
+</body>
+</html>

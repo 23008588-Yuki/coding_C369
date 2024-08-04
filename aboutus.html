@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <title>About Us Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        #company-description, #mission-statement {
+            margin-bottom: 40px;
+        }
+        #team h2 {
+            margin-bottom: 20px;
+        }
+        .team-member {
+            margin-bottom: 30px;
+        }
+        .team-member img {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 120px;
+            height: 120px;
+        }
+        .team-member .card {
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .team-member .card h3 {
+            margin: 0 0 10px 0;
+        }
+        .team-member .card p {
+            margin: 0;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: lightgrey;
+            color: black;
+            padding: 20px 0;
+            margin-top: 40px; /* Add spacing between content and footer */
+        }
+        .footer a {
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: blue;
+            text-decoration: none;
+        }
+        .social-link {
+            position: relative;
+            padding-right: 10px;
+        }
+        .social-link::after {
+            content: "|";
+            position: absolute;
+            right: 0;
+        }
+        .social-link:last-child::after {
+            content: "";
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="margin-top: 20px;">
+            <!-- Navbar brand/logo -->
+            <a class="navbar-brand" style="margin-left: 90px;" href="/index.html"><b>Block Tech</b></a>
+            <!-- Links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/dashboard.html">DashBoard</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/top-up.html">Wallet</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="bitcoin.html">Exchange</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" id="auth-buttons">
+                    <li class="nav-item">
+                        <a class="btn btn-white" style="width: 140px; border: 2px solid #007bff; color: #007bff; margin-right: 10px; border-radius: 5px" href="/login.html">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" style="width: 140px; border-radius: 5px" href="/signup.html">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container" style="padding: 40px 20px;">
+        <section id="company-description">
+            <h2 class="text-center">Who We Are</h2>
+            <p class="text-center">Welcome to BlockTech! We are a team of passionate individuals dedicated to providing top-notch services and products to our customers. Our company was founded in 2009 with the goal of helping people to grow their wealth and allow to do a lot of activities such as money transfers.</p>
+        </section>
+
+        <section id="mission-statement">
+            <h2 class="text-center">Our Mission</h2>
+            <p class="text-center">At BlockTech, our mission is to empower individuals and businesses by providing secure, transparent, and innovative blockchain solutions that drive financial inclusion and economic growth.</p>
+        </section>
+
+        <section id="team">
+            <h2 class="text-center">Meet the Team</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="team-member">
+                        <div class="card">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="/images/pinkpather.png" alt="Team Member 1">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3>Panther</h3>
+                                        <p>Chief Executive Officer (CEO)</p>
+                                        <p>Panther is the visionary behind BlockTech, bringing over 10 years of experience in the industry.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="team-member">
+                        <div class="card">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="/images/spongebob.png" alt="Team Member 2">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3>Bob</h3>
+                                        <p>Chief Technology Officer (CTO)</p>
+                                        <p>Bob leads our technology department with a focus on innovation and excellence.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more team members as needed -->
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="footer-top" style="display: flex; justify-content: space-between; width: 100%; max-width: 1200px;">
+                <div class="footer-contact" style="margin: 20px;">
+                    <h4 style="margin-bottom: 10px;">Contact Us</h4>
+                    <p style="margin: 0;">Email: info@blockchaincompany.com</p>
+                    <p style="margin: 0;">Phone: 8770 7890</p>
+                    <p style="margin: 0;">Address: 123 Blockchain St, Cryptoville, CryptoLand</p>
+                </div> 
+                <div class="footer-links" style="margin: 20px;">
+                    <h4 style="margin-bottom: 10px;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 5px 0;"><a href="/aboutus.html">About Us</a></li>
+                        <li style="margin: 5px 0;"><a href="/service.html">Services</a></li>
+                        <li style="margin: 5px 0;"><a href="/contactus.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-legal" style="margin: 20px;">
+                    <h4 style="margin-bottom: 10px;">Legal</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 5px 0;"><a href="/privacy_policy.html">Privacy Policy</a></li>
+                        <li style="margin: 5px 0;"><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-top: 20px; border-top: 1px solid #444; padding-top: 20px;">
+                <div class="social-media" style="margin: 0 10px;">
+                    <a href="https://www.facebook.com/login.php/" class="social-link"><ion-icon name="logo-facebook"></ion-icon>Facebook</a>
+                    <a href="https://x.com/i/flow/login" class="social-link"><ion-icon name="logo-twitter"></ion-icon>Twitter</a>
+                    <a href="https://www.linkedin.com/login" class="social-link"><ion-icon name="logo-LinkedIn"></ion-icon>LinkedIn</a>
+                    <a href="https://www.instagram.com/accounts/login/" class="social-link"><ion-icon name="logo-instagram"></ion-icon>Instagram</a>
+                </div>
+                <p style="margin: 0;">&copy; 2024 BlockTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>   
+              
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

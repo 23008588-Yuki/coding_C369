@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <title>Contact Us Page</title>
+    <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-control, .form-select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: blue;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: blue;
+        }
+
+    /* Script for footer  */
+
+    .footer a {
+        color: black;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+        color: blue;
+        text-decoration: none;
+    }
+
+    .social-link {
+    position: relative;
+    padding-right: 10px;
+    }
+
+    .social-link::after {
+    content: "|";
+    position: absolute;
+    right: 0;
+    }
+
+    .social-link:last-child::after {
+    content: "";
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="margin-top: 20px;">
+            <!-- Navbar brand/logo -->
+            <a class="navbar-brand" style="margin-left: 90px;" href="/index.html"><b>Block Tech</b></a>
+            <!-- Links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/dashboard.html">DashBoard</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="/top-up.html">Wallet</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="bitcoin.html">Exchange</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 70px;">
+                        <a class="nav-link" style="color: black;" href="security.html">Security</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" id="auth-buttons">
+                    <li class="nav-item">
+                        <a class="btn btn-white" style="width: 140px; border: 2px solid #007bff; color: #007bff; margin-right: 10px; border-radius: 5px" href="/login.html">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" style="width: 140px; border-radius: 5px" href="/signup.html">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="padding: 20px;">
+        <div class="mt-5"><h2>Contact Us</h2></div>
+
+        <form id="contact-form">
+            <div class="mb-3 mt-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="contact" class="form-label">Contact No. :</label>
+                <input type="tel" class="form-control" id="contact" name="contact">
+            </div>
+            <div class="mb-3">
+                <label for="enquiry" class="form-label">Nature of Enquiry:</label>
+                <select class="form-select" id="enquiry" name="enquiry">
+                    <option selected disabled>Select an option</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Account">Account Inquiry</option>
+                    <option value="Feedback">Feedback</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Your Message:</label>
+                <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="background-color: lightgrey; color: black; padding: 40px 0; margin-top: 40px;">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="footer-top" style="display: flex; justify-content: space-between; width: 100%; max-width: 1200px;">
+                <div class="footer-contact" style="margin: 20px;">
+                    <h4 style="margin-bottom: 10px;">Contact Us</h4>
+                    <p style="margin: 0;">Email: info@blockchaincompany.com</p>
+                    <p style="margin: 0;">Phone: 8770 7890</p>
+                    <p style="margin: 0;">Address: 123 Blockchain St, Cryptoville, CryptoLand</p>
+                </div>
+                <div class="footer-links" style="margin: 20px;">
+                    <h4 style="margin-bottom: 10px;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 5px 0;"><a href="/aboutus.html">About Us</a></li>
+                        <li style="margin: 5px 0;"><a href="/service.html">Services</a></li>
+                        <li style="margin: 5px 0;"><a href="/contactus.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-legal" style="margin: 20px;">
+                    <h4 style="margin-bottom: 10px;">Legal</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 5px 0;"><a href="/privacy_policy.html">Privacy Policy</a></li>
+                        <li style="margin: 5px 0;"><a href="/terms&services.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-top: 20px; border-top: 1px solid #444; padding-top: 20px;">
+                <div class="social-media" style="margin: 0 10px;">
+                    <a href="https://www.facebook.com/login.php/" class="social-link"><ion-icon name="logo-facebook"></ion-icon>Facebook</a>
+                    <a href="https://x.com/i/flow/login" class="social-link"><ion-icon name="logo-twitter"></ion-icon>Twitter</a>
+                    <a href="https://www.linkedin.com/login" class="social-link"><ion-icon name="logo-LinkedIn"></ion-icon>LinkedIn</a>
+                    <a href="https://www.instagram.com/accounts/login/" class="social-link"><ion-icon name="logo-instagram"></ion-icon>Instagram</a>
+                </div>
+                <p style="margin: 0;">&copy; 2024 BlockTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+                alert('Submitted successfully');
+                window.location.href = 'contactus.html'; // Redirect to homepage
+            });
+        });
+    </script>
+</body>
+</html>
